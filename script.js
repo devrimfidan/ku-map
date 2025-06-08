@@ -1,5 +1,5 @@
 // create the map
-var map = L.map('map').setView([41.2053, 29.0745], 13); // Centered at Koç University Main Campus with zoom level 13
+var map = L.map('map').setView([41.2053, 29.0745], 15); // Centered at Koç University Main Campus with zoom level 13
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
     minZoom: 3,
