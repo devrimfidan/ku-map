@@ -1,0 +1,374 @@
+/**
+ * IMPORTS       (i-)
+ * LEAFLET       (s-)
+ * VARIABLES     (v-)
+ * MIXINS        (m-)
+ * BASE STYLES   (b-)
+ * LAYOUT        (l-)
+ * COMPONENTS    (c-)
+ * UTILITIES     (u-)
+ * JAVASCRIPT    (j-)
+ * ANIMATION     (a-)
+**/
+/* LEAFLET (s-)
+   ============================================= */
+#map {
+  height: 100vh;
+  width: 100%;
+}
+
+/* VARIABLES (v-)
+   ============================================= */
+/* BASE STYLES (b-)
+   ============================================= */
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 1.5rem;
+  overflow-y: scroll;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: #f2f3f5;
+  color: #3e3e3e;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  margin: 0;
+}
+
+/* Campus header */
+.campus-header {
+  background-color: #514376;
+  color: white;
+  padding: 1rem;
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* Logo styling */
+.c-logo {
+  display: block;
+  text-align: center;
+  padding: 16px 24px;
+  background-color: white;
+  border-bottom: 1px solid #dbdee3;
+}
+
+.c-logo img {
+  max-width: 180px;
+  height: auto;
+}
+
+h1 {
+  font-weight: 300;
+  padding: 16px 24px;
+}
+
+/* Heading styles */
+h2 {
+  border-bottom: solid 1px #dbdee3;
+  font-size: 1.25rem;
+  margin: 0;
+  padding: 12px 24px;
+  font-weight: 500;
+}
+
+/* LAYOUT (l-)
+   ============================================= */
+.l-wrap {
+  height: auto;
+  overflow: hidden;
+}
+
+.l-aside {
+  background: #f2f3f5;
+  float: left;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+  width: 325px;
+}
+
+.l-main {
+  width: auto;
+  overflow: hidden;
+  height: 100vh;
+  padding: 0; /* Adjust if you want some padding */
+  box-sizing: border-box;
+}
+
+/* COMPONENTS (c-)
+   ============================================= */
+.c-nav {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.c-nav__container {
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.c-nav__container > li {
+  background-color: #ffffff;
+  border-top: solid 1px #dbdee3;
+}
+
+.c-nav__container h2 {
+  color: #3e3e3e;
+  font-weight: 400;
+  padding: 16px 40px;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 2;
+}
+.c-nav__container h2:hover {
+  color: #006fba;
+}
+
+.c-nav__container h2:before {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 9px solid #006fba; /* Koç University blue */
+  content: "";
+  position: absolute;
+  top: 43%;
+  left: 22px;
+}
+
+.c-nav__container h2:after {
+  background-color: #ffffff;
+  border: solid 2px #006fba; /* Koç University blue */
+  border-radius: 50%;
+  content: "";
+  height: 10px; /* Increased from 8px */
+  position: absolute;
+  top: 43%;
+  left: 22px;
+  width: 10px; /* Increased from 8px */
+  transform: translateY(-50%);
+}
+
+.c-nav__item:after {
+  color: #d5d8df;
+  content: "+";
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-top: 2px;
+  position: absolute;
+  top: 13px;
+  left: 296px;
+  transform: rotate(0deg);
+  transition: all 0.25s cubic-bezier(0.87, -0.41, 0.19, 1.44);
+}
+
+.c-nav__item.j-is-active:after {
+  color: #9ca3b2;
+  transform: rotate(-45deg);
+  transition: all 0.25s cubic-bezier(0.87, -0.41, 0.19, 1.44);
+}
+
+.c-nav__item {
+  cursor: pointer;
+  margin-top: -1px;
+  position: relative;
+}
+
+.c-nav__sub {
+  background-color: #f2f3f5;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: max-height 0.3s ease-out;
+  transition-property: max-height, opacity;
+}
+
+.c-nav__sub a {
+  color: #3e3e3e;
+  display: block;
+  padding: 8px 40px;
+  position: relative;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: 100%;
+}
+.c-nav__sub a:hover {
+  background-color: #e9ebee;
+}
+
+.c-nav__sub a:before {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 8px solid #3e3e3e;
+  content: "";
+  position: absolute;
+  top: 42%;
+  left: 22px;
+}
+
+.c-nav__sub a:after {
+  background-color: #f2f3f5;
+  border: solid 2px #3e3e3e;
+  border-radius: 50%;
+  content: "";
+  height: 9px; /* Increased from 8px */
+  position: absolute;
+  top: 42%;
+  left: 22px;
+  width: 9px; /* Increased from 8px */
+  transform: translateY(-50%);
+}
+
+.c-icon {
+  background-color: transparent;
+  border: solid 9px #006fba;
+  border-radius: 50%;
+  transform: rotate(-45deg);
+}
+
+.c-icon:after {
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-top: 12px solid #006fba;
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: -5px;
+}
+
+.c-icon__red {
+  border-color: #ef4658;
+}
+
+.c-icon__red:after {
+  border-top-color: #ef4658;
+}
+
+/* JAVASCRIPT (j-)
+   ============================================= */
+.c-nav__sub.j-is-open {
+  max-height: 1000px; /* Large enough to accommodate all submenu items */
+  opacity: 1;
+  transition: max-height 0.5s ease-in;
+  transition-property: max-height, opacity;
+  visibility: visible;
+}
+
+.j-is-highlight {
+  background-color: #e9ebee;
+}
+
+/* ANIMATION (a-)
+   ============================================= */
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+  animation: fadein 2s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* COMPONENTS (c-) - STICKY NAVIGATION
+   ============================================= */
+.c-nav__sticky {
+  position: fixed; /* Change from sticky to fixed */
+  bottom: 0;
+  left: 0;
+  width: 325px; /* Match the sidebar width */
+  background-color: #A6192E; /* Updated to the requested color */
+  padding: 12px 20px;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.c-nav__home-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.c-nav__home-link svg {
+  margin-right: 8px;
+}
+
+/* Navigation home link */
+.c-nav__home-link:active,
+.c-nav__home-link:focus {
+  background-color: transparent;
+  outline: none;
+}
+
+.c-nav__home-link:hover {
+  color: #e6e6e6;
+}
+
+/* Make sure the sticky element doesn't overlap with scrolled content */
+.c-nav__container {
+  padding-bottom: 60px; /* Increase this value to ensure space for the sticky element */
+  margin-bottom: 50px; /* Add margin to ensure content doesn't get hidden behind the fixed element */
+}
+
+/* Marker popup styling */
+.marker-popup h3 {
+  margin: 0 0 10px 0;
+  color: #514376;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.leaflet-popup-content {
+  min-width: 200px;
+  padding: 5px;
+}
+
+/* Navigation fixes */
+.c-nav {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.c-nav__container {
+  padding-bottom: 20px;
+}
+
+.c-nav__sub {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.c-nav__sub.j-is-open {
+  max-height: 1000px; /* Large enough to accommodate all submenu items */
+  transition: max-height 0.5s ease-in;
+}
+
+/* Aside container */
+.l-aside {
+  max-height: 100vh;
+  overflow-y: auto;
+}

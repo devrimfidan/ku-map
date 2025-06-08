@@ -1,0 +1,290 @@
+{
+  "campuses": [
+    {
+      "id": "main_campus",
+      "name": "1. RUMELİFENERİ KAMPÜSÜ",
+      "coordinates": [41.2053, 29.0745],
+      "buildings": [
+        {
+          "id": "main_campus_case",
+          "name": "College of Administrative Sciences and Economics (CASE)",
+          "coordinates": [41.2057, 29.0742]
+        },
+        {
+          "id": "main_campus_cs",
+          "name": "College of Sciences (CS)",
+          "coordinates": [41.2055, 29.0748]
+        },
+        {
+          "id": "main_campus_ce",
+          "name": "College of Engineering (CE)",
+          "coordinates": [41.2051, 29.0747]
+        },
+        {
+          "id": "main_campus_law",
+          "name": "Law School (LAW)",
+          "coordinates": [41.2048, 29.0740]
+        },
+        {
+          "id": "main_campus_som",
+          "name": "School of Medicine (SOM)",
+          "coordinates": [41.2059, 29.0738]
+        },
+        {
+          "id": "main_campus_son",
+          "name": "School of Nursing (SON)",
+          "coordinates": [41.2062, 29.0736]
+        },
+        {
+          "id": "main_campus_gsb",
+          "name": "Graduate School of Business (GSB)",
+          "coordinates": [41.2047, 29.0750]
+        },
+        {
+          "id": "main_campus_gsssh",
+          "name": "Graduate School of Social Sciences and Humanities (GSSSH)",
+          "coordinates": [41.2045, 29.0755]
+        },
+        {
+          "id": "main_campus_gsse",
+          "name": "Graduate School of Sciences and Engineering (GSSE)",
+          "coordinates": [41.2050, 29.0757]
+        },
+        {
+          "id": "main_campus_student",
+          "name": "Student Center",
+          "coordinates": [41.2056, 29.0752]
+        },
+        {
+          "id": "main_campus_library",
+          "name": "Library",
+          "coordinates": [41.2058, 29.0749]
+        },
+        {
+          "id": "main_campus_dorms",
+          "name": "Dormitories (North, South, West)",
+          "coordinates": [41.2042, 29.0753]
+        },
+        {
+          "id": "main_campus_housing",
+          "name": "Faculty Housing",
+          "coordinates": [41.2038, 29.0747]
+        },
+        {
+          "id": "main_campus_sports",
+          "name": "Sports Hall & Stadium",
+          "coordinates": [41.2060, 29.0757]
+        },
+        {
+          "id": "main_campus_health",
+          "name": "Health Center",
+          "coordinates": [41.2053, 29.0760]
+        },
+        {
+          "id": "main_campus_cafeterias",
+          "name": "Cafeterias & Dining Halls",
+          "coordinates": [41.2049, 29.0758]
+        },
+        {
+          "id": "main_campus_parking",
+          "name": "Parking Areas",
+          "coordinates": [41.2035, 29.0745]
+        }
+      ]
+    },
+    {
+      "id": "west_campus",
+      "name": "2. BATI KAMPÜS",
+      "coordinates": [41.193838, 29.049091],
+      "buildings": [
+        {
+          "id": "west_campus_housing",
+          "name": "Faculty Housing",
+          "coordinates": [41.1939, 29.0488]
+        },
+        {
+          "id": "west_campus_dorms",
+          "name": "Dormitories",
+          "coordinates": [41.1937, 29.0493]
+        },
+        {
+          "id": "west_campus_admin",
+          "name": "Administrative Offices",
+          "coordinates": [41.1940, 29.0495]
+        },
+        {
+          "id": "west_campus_shuttle",
+          "name": "Shuttle Terminal",
+          "coordinates": [41.1935, 29.0487]
+        }
+      ]
+    },
+    {
+      "id": "istinye",
+      "name": "3. İSTİNYE KAMPÜS",
+      "coordinates": [41.1162, 29.0387],
+      "buildings": [
+        {
+          "id": "istinye_son",
+          "name": "School of Nursing (some programs)",
+          "coordinates": [41.1164, 29.0389]
+        },
+        {
+          "id": "istinye_labs",
+          "name": "Faculty of Medicine Labs",
+          "coordinates": [41.1160, 29.0385]
+        },
+        {
+          "id": "istinye_research",
+          "name": "Shared Research Facilities",
+          "coordinates": [41.1163, 29.0382]
+        }
+      ]
+    },
+    {
+      "id": "hospital",
+      "name": "4. KOÇ ÜNİVERSİTESİ HASTANESİ",
+      "coordinates": [41.0876, 29.0473],
+      "buildings": [
+        {
+          "id": "hospital_main",
+          "name": "Main Hospital Building",
+          "coordinates": [41.0878, 29.0475]
+        },
+        {
+          "id": "hospital_outpatient",
+          "name": "Outpatient Clinics",
+          "coordinates": [41.0874, 29.0472]
+        },
+        {
+          "id": "hospital_research",
+          "name": "Faculty of Medicine Research Facilities",
+          "coordinates": [41.0875, 29.0468]
+        },
+        {
+          "id": "hospital_patient",
+          "name": "Patient Services",
+          "coordinates": [41.0872, 29.0476]
+        },
+        {
+          "id": "hospital_parking",
+          "name": "Parking Area",
+          "coordinates": [41.0869, 29.0471]
+        }
+      ]
+    },
+    {
+      "id": "kworks",
+      "name": "5. KWORKS",
+      "coordinates": [41.0683, 29.0074],
+      "buildings": [
+        {
+          "id": "kworks_coworking",
+          "name": "Co-working Space",
+          "coordinates": [41.0684, 29.0076]
+        },
+        {
+          "id": "kworks_startup",
+          "name": "Startup Offices",
+          "coordinates": [41.0682, 29.0073]
+        },
+        {
+          "id": "kworks_meeting",
+          "name": "Meeting Rooms",
+          "coordinates": [41.0685, 29.0072]
+        },
+        {
+          "id": "kworks_event",
+          "name": "Event & Demo Area",
+          "coordinates": [41.0683, 29.0070]
+        },
+        {
+          "id": "kworks_mentorship",
+          "name": "Mentorship Lounges",
+          "coordinates": [41.0681, 29.0077]
+        }
+      ]
+    },
+    {
+      "id": "anamed",
+      "name": "6. ANAMED",
+      "coordinates": [41.0347, 28.9736],
+      "buildings": [
+        {
+          "id": "anamed_main",
+          "name": "Main Research Building",
+          "coordinates": [41.0348, 28.9738]
+        },
+        {
+          "id": "anamed_apartments",
+          "name": "Residential Researcher Apartments",
+          "coordinates": [41.0346, 28.9734]
+        },
+        {
+          "id": "anamed_conference",
+          "name": "Conference Room",
+          "coordinates": [41.0349, 28.9732]
+        },
+        {
+          "id": "anamed_exhibition",
+          "name": "Exhibition Space",
+          "coordinates": [41.0345, 28.9738]
+        }
+      ]
+    },
+    {
+      "id": "vekam",
+      "name": "7. VEKAM",
+      "coordinates": [39.9041, 32.8476],
+      "buildings": [
+        {
+          "id": "vekam_library",
+          "name": "Research Library",
+          "coordinates": [39.9043, 32.8478]
+        },
+        {
+          "id": "vekam_archives",
+          "name": "Archives",
+          "coordinates": [39.9040, 32.8473]
+        },
+        {
+          "id": "vekam_hall",
+          "name": "Event Hall",
+          "coordinates": [39.9039, 32.8480]
+        },
+        {
+          "id": "vekam_exhibition",
+          "name": "Exhibition Areas",
+          "coordinates": [39.9044, 32.8475]
+        }
+      ]
+    },
+    {
+      "id": "akmed",
+      "name": "8. AKMED",
+      "coordinates": [36.8857, 30.7029],
+      "buildings": [
+        {
+          "id": "akmed_library",
+          "name": "Research Library",
+          "coordinates": [36.8859, 30.7031]
+        },
+        {
+          "id": "akmed_accommodation",
+          "name": "Accommodation for Scholars",
+          "coordinates": [36.8855, 30.7027]
+        },
+        {
+          "id": "akmed_seminar",
+          "name": "Seminar Room",
+          "coordinates": [36.8858, 30.7025]
+        },
+        {
+          "id": "akmed_lab",
+          "name": "Archaeology Research Lab",
+          "coordinates": [36.8856, 30.7032]
+        }
+      ]
+    }
+  ]
+}

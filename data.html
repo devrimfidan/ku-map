@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koç University Map Data</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://www.ku.edu.tr//wp-content/themes/koc2023/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f5f5;
+    }
+    
+    .table-header {
+      background-color: #514376;
+      color: white;
+    }
+    
+    .campus-card {
+      margin-bottom: 2rem;
+      border: none;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .campus-header {
+      background-color: #514376;
+      color: white;
+      padding: 1rem;
+    }
+    
+    .map-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 4px;
+      text-decoration: none;
+      color: white;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+      margin-right: 5px;
+    }
+    
+    .map-link svg {
+      margin-right: 5px;
+    }
+    
+    .google {
+      background-color: #4285F4;
+    }
+    
+    .google:hover {
+      background-color: #3367d6;
+    }
+    
+    .osm {
+      background-color: #7EBC6F;
+    }
+    
+    .osm:hover {
+      background-color: #68a15d;
+    }
+    
+    .yandex {
+      background-color: #FC3F1D;
+    }
+    
+    .yandex:hover {
+      background-color: #e63417;
+    }
+    
+    /* Add Bing Maps styling */
+    .bing {
+      background-color: #008373;
+    }
+    
+    .bing:hover {
+      background-color: #006759;
+    }
+    
+    .table td, .table th {
+      vertical-align: middle;
+    }
+    
+    .location-name {
+      font-weight: 500;
+    }
+    
+    .coordinates {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    .header-logo {
+      max-height: 50px;
+    }
+    
+    @media (max-width: 767px) {
+      .map-links-container {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container py-4">
+    <div class="d-flex align-items-center mb-4 bg-white p-3 rounded shadow-sm">
+      <img src="https://www.ku.edu.tr/wp-content/uploads/2023/06/cropped-logo.png" alt="Koç University Logo" class="header-logo me-3">
+      <h1 class="h3 m-0" style="color: #A6192E;">Koç University Campus Map Data</h1>
+    </div>
+    
+    <div class="mb-4">
+      <a href="index.html" class="btn btn-outline-primary">← Back to Interactive Map</a>
+    </div>
+    
+    <div id="campuses-container">
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Loading campus data...</p>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fetch the map.json data
+      fetch('map.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          displayCampusData(data);
+        })
+        .catch(error => {
+          document.getElementById('campuses-container').innerHTML = `
+            <div class="alert alert-danger">
+              <h4 class="alert-heading">Error loading data</h4>
+              <p>Error loading campus data: ${error.message}</p>
+              <hr>
+              <p class="mb-0">Please check that the map.json file exists and is properly formatted.</p>
+            </div>
+          `;
+          console.error('Error:', error);
+        });
+    });
+    
+    function displayCampusData(data) {
+      const container = document.getElementById('campuses-container');
+      container.innerHTML = '';
+      
+      // For each campus, create a card with a table
+      data.campuses.forEach(campus => {
+        const campusSection = document.createElement('div');
+        campusSection.className = 'campus-card card mb-4';
+        
+        // Create campus header
+        const campusHeader = document.createElement('div');
+        campusHeader.className = 'campus-header';
+        campusHeader.innerHTML = `<h2 class="h5 m-0">${campus.name}</h2>`;
+        campusSection.appendChild(campusHeader);
+        
+        // Create table
+        const tableContainer = document.createElement('div');
+        tableContainer.className = 'table-responsive';
+        
+        const table = document.createElement('table');
+        table.className = 'table table-hover mb-0';
+        
+        // Table header
+        const thead = document.createElement('thead');
+        thead.className = 'table-light';
+        thead.innerHTML = `
+          <tr>
+            <th scope="col" style="width: 50%;">Location</th>
+            <th scope="col" style="width: 20%;">Coordinates</th>
+            <th scope="col" style="width: 30%;">Map Links</th>
+          </tr>
+        `;
+        table.appendChild(thead);
+        
+        // Table body
+        const tbody = document.createElement('tbody');
+        
+        // Add campus overview row
+        const campusRow = document.createElement('tr');
+        campusRow.className = 'table-light';
+        
+        const campusNameCell = document.createElement('td');
+        campusNameCell.className = 'location-name';
+        campusNameCell.textContent = 'Campus Overview';
+        campusRow.appendChild(campusNameCell);
+        
+        const campusCoordsCell = document.createElement('td');
+        campusCoordsCell.innerHTML = `
+          <span class="coordinates">${campus.coordinates[0]}, ${campus.coordinates[1]}</span>
+        `;
+        campusRow.appendChild(campusCoordsCell);
+        
+        const campusLinksCell = document.createElement('td');
+        campusLinksCell.className = 'map-links-container';
+        campusLinksCell.innerHTML = `
+          <a href="https://www.google.com/maps?q=${campus.coordinates[0]},${campus.coordinates[1]}" target="_blank" class="map-link google">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 19l9 2-9-18-9 18 9-2z"></path>
+            </svg>
+            Google
+          </a>
+          <a href="https://www.openstreetmap.org/?mlat=${campus.coordinates[0]}&mlon=${campus.coordinates[1]}&zoom=17" target="_blank" class="map-link osm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            OSM
+          </a>
+          <a href="https://yandex.com/maps/?ll=${campus.coordinates[1]},${campus.coordinates[0]}&z=17" target="_blank" class="map-link yandex">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 8v4"></path>
+              <path d="M12 16h.01"></path>
+            </svg>
+            Yandex
+          </a>
+          <a href="https://www.bing.com/maps?q=${campus.coordinates[0]},${campus.coordinates[1]}" target="_blank" class="map-link bing">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12l2-2 4 4 8-8 2 2-10 10z"></path>
+            </svg>
+            Bing
+          </a>
+        `;
+        campusRow.appendChild(campusLinksCell);
+        tbody.appendChild(campusRow);
+        
+        // Add building rows
+        campus.buildings.forEach(building => {
+          const buildingRow = document.createElement('tr');
+          
+          const buildingNameCell = document.createElement('td');
+          buildingNameCell.className = 'location-name';
+          buildingNameCell.textContent = building.name;
+          buildingRow.appendChild(buildingNameCell);
+          
+          const buildingCoordsCell = document.createElement('td');
+          buildingCoordsCell.innerHTML = `
+            <span class="coordinates">${building.coordinates[0]}, ${building.coordinates[1]}</span>
+          `;
+          buildingRow.appendChild(buildingCoordsCell);
+          
+          const buildingLinksCell = document.createElement('td');
+          buildingLinksCell.className = 'map-links-container';
+          buildingLinksCell.innerHTML = `
+            <a href="https://www.google.com/maps?q=${building.coordinates[0]},${building.coordinates[1]}" target="_blank" class="map-link google">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 19l9 2-9-18-9 18 9-2z"></path>
+              </svg>
+              Google
+            </a>
+            <a href="https://www.openstreetmap.org/?mlat=${building.coordinates[0]}&mlon=${building.coordinates[1]}&zoom=19" target="_blank" class="map-link osm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              OSM
+            </a>
+            <a href="https://yandex.com/maps/?ll=${building.coordinates[1]},${building.coordinates[0]}&z=19" target="_blank" class="map-link yandex">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 8v4"></path>
+                <path d="M12 16h.01"></path>
+              </svg>
+              Yandex
+            </a>
+            <a href="https://www.bing.com/maps?q=${building.coordinates[0]},${building.coordinates[1]}" target="_blank" class="map-link bing">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12l2-2 4 4 8-8 2 2-10 10z"></path>
+              </svg>
+              Bing
+            </a>
+          `;
+          buildingRow.appendChild(buildingLinksCell);
+          
+          tbody.appendChild(buildingRow);
+        });
+        
+        table.appendChild(tbody);
+        tableContainer.appendChild(table);
+        campusSection.appendChild(tableContainer);
+        container.appendChild(campusSection);
+      });
+    }
+  </script>
+  
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
